@@ -268,8 +268,8 @@ int JetValidation::process_event(PHCompositeNode *topNode)
   }
 
   //get the event centrality/impact parameter from HIJING
-  //m_centrality =  cent_node->get_centile(CentralityInfo::PROP::mbd_NS);
-  m_centrality = (int)(100*cent_node->get_centile(CentralityInfo::PROP::mbd_NS));
+  m_centrality =  cent_node->get_centile(CentralityInfo::PROP::bimp);
+  //m_centrality = (int)(100*cent_node->get_centile(CentralityInfo::PROP::mbd_NS));
   m_impactparam =  cent_node->get_quantity(CentralityInfo::PROP::bimp);
 
   //get reco jets
@@ -442,7 +442,7 @@ int JetValidation::process_event(PHCompositeNode *topNode)
   Gl1Packet *gl1PacketInfo = findNode::getClass<Gl1Packet>(topNode, "GL1Packet");
   if (!gl1PacketInfo)
     {
-      std::cout << PHWHERE << "caloTreeGen::process_event: GL1Packet node is missing. Output related to this node will be empty" << std::endl;
+      //std::cout << PHWHERE << "caloTreeGen::process_event: GL1Packet node is missing. Output related to this node will be empty" << std::endl;
     }
 
   if (gl1PacketInfo)
@@ -457,7 +457,7 @@ int JetValidation::process_event(PHCompositeNode *topNode)
     }
 
   //get clusters
-  RawClusterContainer *clusterContainer = findNode::getClass<RawClusterContainer>(topNode, "CLUSTERINFO_CEMC");
+  RawClusterContainer *clusterContainer = findNode::getClass<RawClusterContainer>(topNode, "CLUSTER_CEMC");
   if (!clusterContainer)
     {
       std::cout << PHWHERE << "caloTreeGen::process_event: CLUSTERINFO_CEMC node is missing. Output related to this node will be empty" << std::endl;
